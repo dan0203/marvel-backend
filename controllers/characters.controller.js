@@ -3,7 +3,7 @@ const charactersService = require('../services/characters.service');
 
 const getAll = async (req, res, next) => {
     try {
-        const characters = await charactersService.getAll();
+        const characters = await charactersService.getAll(req.query);
 
         return res.status(200).json(characters);
     } catch (error) {

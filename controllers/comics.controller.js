@@ -3,7 +3,7 @@ const comicsService = require('../services/comics.service');
 
 const getAll = async (req, res, next) => {
     try {
-        const comics = await comicsService.getAll();
+        const comics = await comicsService.getAll(req.query);
 
         return res.status(200).json(comics);
     } catch (error) {

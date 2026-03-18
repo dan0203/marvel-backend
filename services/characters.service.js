@@ -4,8 +4,24 @@ const mongoose = require('mongoose');
 // Modules internes
 const { createError } = require('../utils/createError');
 
-const getAll = async () => {
-    const response = await axios.get(`${process.env.MARVEL_API_URL}/characters?apiKey=${process.env.MARVEL_API_KEY}`);
+const getAll = async data => {
+    const { limit, skip, name } = data;
+
+    let url = `${process.env.MARVEL_API_URL}/characters?apiKey=${process.env.MARVEL_API_KEY}`;
+
+    if (limit !== undefined) {
+        url += `&limit=${limit}`;
+    }
+
+    if (skip !== undefined) {
+        url += `&skip=${skip}`;
+    }
+
+    if (name !== undefined) {
+        url += `&name=${name}`;
+    }
+
+    const response = await axios.get(url);
 
     return response.data;
 };
