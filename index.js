@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 // Modules internes
+const charactersRoutes = require('./routes/characters.route');
 
 // Création de l'app + middlewares globaux
 const app = express();
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/characters', charactersRoutes);
 app.all(/.*/, (req, res) => {
     res.status(404).json({ message: 'The route does not exist' });
 });
