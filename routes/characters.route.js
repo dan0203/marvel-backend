@@ -5,7 +5,7 @@ const router = express.Router();
 const charactersController = require('../controllers/characters.controller');
 
 // Définition des routes
-router.get('/', charactersController.getAll);
-router.get('/:characterId', charactersController.getOneById);
+router.get('/characters', charactersController.getAll);
+router.get('/character/:characterId', charactersController.getOneById);
 
 module.exports = router;
