@@ -12,10 +12,18 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+// Route de base
+app.get('/', (req, res) => {
+    try {
+        return res.status(200).json('Bienvenue sur le serveur marvel 🦸‍♂️🦸‍♀️');
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
 app.use('/', charactersRoutes);
 app.use('/', comicsRoutes);
 app.all(/.*/, (req, res) => {
-    res.status(404).json({ message: 'The route does not exist' });
+    return res.status(404).json({ message: 'The route does not exist' });
 });
 
 // Middleware de gestion globale d'erreur
